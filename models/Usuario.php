@@ -145,5 +145,45 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        /* Mostrar los datos del usuario según el id */
+        public function get_usuario_x_id($usu_id){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT * FROM tm_usuario WHERE est = 1
+            and usu_id = ?";
+
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1,$usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        /* Actualizar la información del perfil del usuario según el id */
+        public function update_usuario_perfil($usu_id, $usu_nom, $usu_apep, $usu_apem, $usu_pass, $usu_sex, $usu_telf){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "UPDATE tm_usuario
+                SET
+                    usu_nom = ?,
+                    usu_apep = ?,
+                    usu_apem = ?,
+                    usu_pass = ?,
+                    usu_sex = ?,
+                    usu_telf = ?
+                WHERE
+                    usu_id = ?";
+
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1,$usu_nom);
+            $sql->bindValue(2,$usu_apep);
+            $sql->bindValue(3,$usu_apem);
+            $sql->bindValue(4,$usu_pass);
+            $sql->bindValue(5,$usu_sex);
+            $sql->bindValue(6,$usu_telf);
+            $sql->bindValue(7,$usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
     }
 ?>
