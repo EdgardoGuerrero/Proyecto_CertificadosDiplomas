@@ -1,5 +1,4 @@
 <?php 
-  /* Llamando Cadena de Conexión */
   require_once("config/conexion.php");
 
   if(isset($_POST["enviar"]) and $_POST["enviar"]=="si"){
