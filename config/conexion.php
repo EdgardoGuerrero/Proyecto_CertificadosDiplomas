@@ -25,7 +25,7 @@
 
         /* Ruta principal del proyecto */
         public static function ruta(){
-            return "http://localhost/ProjectUdemy/";
+            return "http://localhost/Proyecto_CertificadosDiplomas/";
         }
     } 
 ?>
