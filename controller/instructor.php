@@ -2,9 +2,9 @@
     /* Llamando a cadena de conexión */
     require_once("../config/conexion.php");
     /* Llamando a la clase */
-    require_once("../models/Curso.php");
+    require_once("../models/Instructor.php");
     /* Inicalizando clase */
-    $curso = new Curso();
+    $instructor = new Instructor();
 
     /* Opción de solicitud de controller */
     switch($_GET["op"]){
@@ -59,11 +59,11 @@
             $data = Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = $row["cat_nom"];
-                $sub_array[] = strtoupper($row["cur_nom"]);
+                $sub_array[] = $row["cat_id"];
+                $sub_array[] = $row["cur_nom"];
                 $sub_array[] = $row["cur_fechini"];
                 $sub_array[] = $row["cur_fechfin"];
-                $sub_array[] = $row["inst_nom"]." ".$row["inst_apep"]." ".$row["inst_apem"];
+                $sub_array[] = $row["inst_id"];
                 $sub_array[] = '<button type="button" onClick="editar('.$row["cur_id"].')"  id="'.$row["cur_id"].'" class="btn btn-outline-warning btn-icon"><div><i class="fa fa-edit"></div></button>';
                 $sub_array[] = '<button type="button" onClick="eliminar('.$row["cur_id"].')"  id="'.$row["cur_id"].'" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
                 $data[] = $sub_array;
@@ -76,6 +76,17 @@
                 "aaData"=>$data
             );
             echo json_encode($results);
+            break;
+
+        case "combo":
+            $datos=$instructor->get_instructor();
+            if(is_array($datos)==true and count($datos)>0){
+                $html= " <option label='Seleccione'></option>";
+                foreach($datos as $row){
+                    $html.= "<option value='".$row['inst_id']."'>".$row['inst_nom']." ".$row['inst_apep']." ".$row['inst_apem']."</option>";
+                }
+                echo $html;
+            }
             break;
     }
 ?>
