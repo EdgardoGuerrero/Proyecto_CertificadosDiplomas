@@ -9,40 +9,40 @@
     /* Opción de solicitud de controller */
     switch($_GET["op"]){
         case "guardaryeditar":
-            if(empty($_POST["cur_id"])){
-                $curso->insert_curso(
-                    $_POST["cat_id"],
-                    $_POST["cur_nom"],
-                    $_POST["cur_descrip"],
-                    $_POST["cur_fechini"],
-                    $_POST["cur_fechfin"],
-                    $_POST["inst_id"]
+            if(empty($_POST["inst_id"])){
+                $instructor->insert_instructor(
+                    $_POST["inst_nom"],
+                    $_POST["inst_apep"],
+                    $_POST["inst_apem"],
+                    $_POST["inst_correo"],
+                    $_POST["inst_sex"],
+                    $_POST["inst_telf"]
                 );
             }else{
-                $curso->update_curso(
-                    $_POST["cur_id"],
-                    $_POST["cat_id"],
-                    $_POST["cur_nom"],
-                    $_POST["cur_descrip"],
-                    $_POST["cur_fechini"],
-                    $_POST["cur_fechfin"],
-                    $_POST["inst_id"]
+                $instructor->update_instructor(
+                    $_POST["inst_id"],
+                    $_POST["inst_nom"],
+                    $_POST["inst_apep"],
+                    $_POST["inst_apem"],
+                    $_POST["inst_correo"],
+                    $_POST["inst_sex"],
+                    $_POST["inst_telf"]
                 );
             }
             break;
 
         /* Creando Json según el ID */
         case "mostrar":
-            $datos = $curso->get_curso_id($_POST["cur_id"]);
+            $datos = $instructor->get_instructor_id($_POST["inst_id"]);
                 if(is_array($datos)==true and count($datos)<>0){
                     foreach($datos as $row){
-                        $output["cur_id"] = $row["cur_id"];
-                        $output["cat_id"] = $row["cat_id"];
-                        $output["cur_nom"] = $row["cur_nom"];
-                        $output["cur_descrip"] = $row["cur_descrip"];
-                        $output["cur_fechini"] = $row["cur_fechini"];
-                        $output["cur_fechfin"] = $row["cur_fechfin"];
                         $output["inst_id"] = $row["inst_id"];
+                        $output["inst_nom"] = $row["inst_nom"];
+                        $output["inst_apep"] = $row["inst_apep"];
+                        $output["inst_apem"] = $row["inst_apem"];
+                        $output["inst_correo"] = $row["inst_correo"];
+                        $output["inst_sex"] = $row["inst_sex"];
+                        $output["inst_telf"] = $row["inst_telf"];
                     }
                     echo json_encode($output);
                 }
@@ -50,22 +50,22 @@
         
         /* Eliminar según ID */
         case "eliminar":
-            $curso->delete_curso($_POST["cur_id"]);
+            $instructor->delete_instructor($_POST["inst_id"]);
             break;
 
         /* Listar toda la información según formato de datatable */
         case "listar":
-            $datos = $curso->get_curso();
+            $datos = $instructor->get_instructor();
             $data = Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = $row["cat_id"];
-                $sub_array[] = $row["cur_nom"];
-                $sub_array[] = $row["cur_fechini"];
-                $sub_array[] = $row["cur_fechfin"];
-                $sub_array[] = $row["inst_id"];
-                $sub_array[] = '<button type="button" onClick="editar('.$row["cur_id"].')"  id="'.$row["cur_id"].'" class="btn btn-outline-warning btn-icon"><div><i class="fa fa-edit"></div></button>';
-                $sub_array[] = '<button type="button" onClick="eliminar('.$row["cur_id"].')"  id="'.$row["cur_id"].'" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                $sub_array[] = $row["inst_nom"];
+                $sub_array[] = $row["inst_apep"];
+                $sub_array[] = $row["inst_apem"];
+                $sub_array[] = $row["inst_correo"];
+                $sub_array[] = $row["inst_telf"];
+                $sub_array[] = '<button type="button" onClick="editar('.$row["inst_id"].')"  id="'.$row["inst_nom"].'" class="btn btn-outline-warning btn-icon"><div><i class="fa fa-edit"></div></button>';
+                $sub_array[] = '<button type="button" onClick="eliminar('.$row["inst_id"].')"  id="'.$row["inst_nom"].'" class="btn btn-outline-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
                 $data[] = $sub_array;
             }
 
