@@ -57,7 +57,7 @@
 
         /* Microservicio para mostar informacion del certificado con el curd_id */
         case "mostrar_curso_detalle":
-            $datos = $usuario->get_curso_x_id_detalle($_POST["curd_id"]);
+            $datos=$usuario->get_curso_x_id_detalle($_POST["curd_id"]);
             if(is_array($datos)==true and count($datos)<>0){
                 foreach($datos as $row){
                     $output["curd_id"] = $row["curd_id"];
@@ -66,7 +66,6 @@
                     $output["cur_descrip"] = $row["cur_descrip"];
                     $output["cur_fechini"] = $row["cur_fechini"];
                     $output["cur_fechfin"] = $row["cur_fechfin"];
-                    $output["cur_img"] = $row["cur_img"];
                     $output["usu_id"] = $row["usu_id"];
                     $output["usu_nom"] = $row["usu_nom"];
                     $output["usu_apep"] = $row["usu_apep"];
@@ -189,7 +188,7 @@
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
-                $sub_array[] = "<input type='checkbox' name='detallecheck[]' value='". $row["usu_id"] ."'>";
+                $sub_array[] = "<input type='checkbox' name='detallecheck[]' value='".$row['usu_id']."'>";
                 $sub_array[] = $row["usu_nom"];
                 $sub_array[] = $row["usu_apep"];
                 $sub_array[] = $row["usu_apem"];
@@ -204,6 +203,6 @@
                 "aaData"=>$data);
             echo json_encode($results);
             break;
-
+        
     }
 ?>
