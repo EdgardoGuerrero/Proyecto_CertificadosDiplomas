@@ -7,8 +7,8 @@
         ){
             $conectar = parent::conexion();
             parent::set_names();
-            $sql = "INSERT INTO tm_curso(cat_id, cur_nom, cur_descrip, cur_fechini, cur_fechfin, inst_id, fech_crea, est) 
-            VALUES (?,?,?,?,?,?,now(),'1')";
+            $sql = "INSERT INTO tm_curso(cat_id, cur_nom, cur_descrip, cur_fechini, cur_fechfin, inst_id, cur_img, fech_crea, est) 
+            VALUES (?,?,?,?,?,?, '1.png',now(),'1')";
 
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1,$cat_id);

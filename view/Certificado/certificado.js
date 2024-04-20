@@ -1,16 +1,16 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-/* Inicializamos la imagen */
-const image = new Image();
-image.src = "../../public/certificado.png";
-
 $(document).ready(function(){
     var curd_id = getUrlParameter('curd_id');
 
     $.post("../../controller/usuario.php?op=mostrar_curso_detalle", 
     { curd_id : curd_id }, function (data) {
         data = JSON.parse(data);
+
+        /* Inicializamos la imagen */
+        const image = new Image();
+        image.src = data.cur_img;
 
         /* Dimensionamos y seleccionamos imagen */
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);

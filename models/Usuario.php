@@ -142,6 +142,7 @@
                 tm_curso.cur_descrip,
                 tm_curso.cur_fechini,
                 tm_curso.cur_fechfin,
+                tm_curso.cur_img,
                 tm_usuario.usu_id,
                 tm_usuario.usu_nom,
                 tm_usuario.usu_apep,
