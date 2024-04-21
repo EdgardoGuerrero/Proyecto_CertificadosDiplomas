@@ -39,21 +39,21 @@
 
             <div class="table-wrapper"></div>
                 <table id="usuario_data" class="table display responsive nowrap">
-                  <thead>
-                      <tr>
-                      <th class="wd-15p">Nombre</th>
-                      <th class="wd-15p">Ape.Paterno</th>
-                      <th class="wd-15p">Ape.Materno</th>
-                      <th class="wd-15p">Correo</th>
-                      <th class="wd-15p">Telefono</th>
-                      <th class="wd-15p">Rol</th>
-                      <th class="wd-10p"></th>
-                      <th class="wd-10p"></th>
-                      </tr>
-                  </thead>
-                  <tbody>
+                <thead>
+                    <tr>
+                    <th class="wd-15p">Nombre</th>
+                    <th class="wd-15p">Ape.Paterno</th>
+                    <th class="wd-15p">Ape.Materno</th>
+                    <th class="wd-15p">Correo</th>
+                    <th class="wd-15p">Telefono</th>
+                    <th class="wd-15p">Rol</th>
+                    <th class="wd-10p"></th>
+                    <th class="wd-10p"></th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                  </tbody>
+                </tbody>
                 </table>
             </div>
 

@@ -1,17 +1,19 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+/* Inicializamos la imagen */
+const image = new Image();
+const imageqr = new Image();
+
 $(document).ready(function(){
     var curd_id = getUrlParameter('curd_id');
 
-    $.post("../../controller/usuario.php?op=mostrar_curso_detalle", 
-    { curd_id : curd_id }, function (data) {
+    $.post("../../controller/usuario.php?op=mostrar_curso_detalle", { curd_id : curd_id }, function (data) {
         data = JSON.parse(data);
 
-        /* Inicializamos la imagen */
-        const image = new Image();
+        /* Ruta de la Imagen */
         image.src = data.cur_img;
-
+        
         /* Dimensionamos y seleccionamos imagen */
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
@@ -33,7 +35,12 @@ $(document).ready(function(){
         
         ctx.font = "13px Arial";
         ctx.fillText('Fecha Inicio: '+data.cur_fechini+" / Fecha de Finalización: "+data.cur_fechfin, x, 480);
-        
+
+        /* Ruta de la Imagen */
+        imageqr.src = "../../public/qr/"+curd_id+".png";
+        /* Dimensionamos y seleccionamos imagen */
+        ctx.drawImage(imageqr, 400, 500, 100, 100);
+
         $('#cur_descrip').html(data.cur_descrip);
     });
 
